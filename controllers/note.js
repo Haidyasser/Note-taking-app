@@ -5,17 +5,17 @@ const Note = require("../models/note");
 const createNote = async (req, res) => {
     console.log('create note')
     try {
-        Note.create({
+        const note = new Note({
             title: req.body.title,
-            content: req.body.content,
+            text: req.body.text,
             color: req.body.color,
             user: req.body.user,
-        }).then(data => {
+        });
+        note.save().then(data => {
             sendResponse(res, 200, data);
         }).catch(err => {
             sendResponse(res, 500, err);
         });
-    
     } catch (err) {
         sendResponse(res, 500, err);
     }
@@ -54,7 +54,7 @@ const updateNote = async (req, res) => {
     try{
         Note.findByIdAndUpdate(req.params.id, {
             title: req.body.title,
-            content: req.body.content,
+            text: req.body.text,
             color: req.body.color,
             user: req.body.user,
         }, {new: true}).then(data => {

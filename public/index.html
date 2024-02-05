@@ -14,6 +14,7 @@
 </head>
 
 <body>
+  <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="/">NoteBook</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -37,7 +38,7 @@
     </div>
   </nav>
 
-  <!--Add a note by clicking on add note button and submit form-->
+  <!--Adding note form-->
   <div class="container my-4">
     <h1 class="text-center">Add a Note</h1>
     <form id="addNoteForm" action="/notes" method="POST">
@@ -51,16 +52,16 @@
       </div>
 
       <!-- Note -->
-      <div class="form-group
+      <div class="form-group">
         <label for="note-text">Note</label>
-        <textarea class="form-control" id="note-text" name="note" rows="3" placeholder="Enter note" required></textarea>
+        <textarea class="form-control" id="note-text" name="note" rows="3" placeholder="Enter note"></textarea>
       </div>
 
-      <!--Note color red orange blue green and not select by default-->
+      <!--Note color-->
       <div class="form-group">
         <label for="note-color">Color</label>
         <select class="form-control" id="note-color" name="color">
-          <option value="" disabled selected style="display:none;">none</option>
+          <option value="white" disabled selected style="display:none;">none</option>
           <option value="red">Red</option>
           <option value="orange">Orange</option>
           <option value="blue">Blue</option>
@@ -73,11 +74,57 @@
   </div>
 
 
-  <!--Display all notes-->
+  <!-- Display notes -->
   <h1 class="text-center mt-4">Your Notes</h1>
   <div class="container">
     <div class="row justify-content-center" id="noteContainer">
       <!-- Notes will be dynamically added here -->
+    </div>
+  </div>
+
+  <!--edit note form -->
+  <div class="modal" id="editNoteModal" tabindex="-1" role="dialog" aria-labelledby="editNoteModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editNoteModalLabel">Edit Note</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form id="editNoteForm" action="/notes" method="POST">
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="edit-note-title">Title</label>
+              <input type="text" maxlength="30" class="form-control" id="edit-note-title" name="title"
+                aria-describedby="titleHelp" placeholder="Enter title" required>
+              <small id="titleHelp" class="form-text text-muted">Keep it short and sweet.</small>
+            </div>
+            <div class="form-group">
+              <label for="edit-note-text">Note</label>
+              <textarea class="form-control" id="edit-note-text" name="note" rows="3" placeholder="Enter note"
+                required></textarea>
+
+              <input type="hidden" id="edit-note-id" name="id">
+            </div>
+            <div class="form-group">
+              <label for="edit-note-color">Color</label>
+              <select class="form-control" id="edit-note-color" name="color">
+                <option value="" disabled selected style="display:none;">none</option>
+                <option value="red">Red</option>
+                <option value="orange">Orange</option>
+                <option value="blue">Blue</option>
+                <option value="green">Green</option>
+              </select>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 

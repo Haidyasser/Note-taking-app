@@ -6,12 +6,12 @@ const noteSchema = new Schema({
         type: String,
         required: [true, "Title is required"]
     },
-    content:{
+    text:{
         type: String,
     },
     color:{
         type: String,
-        default: "white",
+        default: "lightgray",
     },
     user:{
         type: Schema.Types.ObjectId,

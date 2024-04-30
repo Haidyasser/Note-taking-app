@@ -29,15 +29,13 @@ app.use("/notes", Note);
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/index.html');
 });
-app.get('/signup', (req, res) => {
-  res.sendFile(__dirname + '/public/signup.html');
-});
-app.get('/login', (req, res) => {
-  res.sendFile(__dirname + '/public/login.html');
-});
-app.get('/about', (req, res) => {
-  res.sendFile(__dirname + '/public/about.html');
-});
+
+let pages = ['login', 'signup', 'index', 'about'];
+for (let page of pages) {
+  app.get(`/${page}`, (req, res) => {
+    res.sendFile(__dirname + `/public/${page}.html`);
+  });
+}
 
 // port
 const port = process.env.PORT || 3000;

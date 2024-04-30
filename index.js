@@ -25,11 +25,11 @@ app.get('/', (req, res) => {
 });
 
 let pages = ['login', 'signup', 'index', 'about'];
-for (let page of pages) {
+pages.forEach(page => {
   app.get(`/${page}`, (req, res) => {
     res.sendFile(__dirname + `/public/${page}.html`);
   });
-}
+});
 
 // routes
 const User = require("./routes/user");
